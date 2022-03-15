@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     password.setError("Password is a required field.");
                     return;
                 }
-                mDialog.setMessage("Processing....");
+                mDialog.setMessage("Processing...");
                 mDialog.show();
 
                 mAuth.signInWithEmailAndPassword(loginemail, loginpass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
