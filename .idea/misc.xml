@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_all_job.xml" value="0.21875" />
         <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_home.xml" value="0.1933876811594203" />
         <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_main.xml" value="0.1933876811594203" />
+        <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_post_jobs.xml" value="0.21875" />
         <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_registration.xml" value="0.1933876811594203" />
       </map>
     </option>

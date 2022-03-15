@@ -1,4 +1,4 @@
-package com.sachin.job_portal;
+package com.android_project.job_portal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,12 +18,13 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText email;
-    private EditText password;
+    private EditText emailReg;
+    private EditText passReg;
+
+    private Button btnReg;
     private Button btnLogin;
-    private Button btnRegister;
 
     //Firebase Auth
     private FirebaseAuth mAuth;
@@ -32,71 +32,63 @@ public class MainActivity extends AppCompatActivity {
     //Progress Display
     private ProgressDialog mDialog;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_registration);
 
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         mDialog = new ProgressDialog(this);
-        loginFunction();
+        Register();
     }
 
-    private void loginFunction() {
-        email = findViewById(R.id.login_email);
-        password = findViewById(R.id.login_password);
+    private void Register() {
+        emailReg = findViewById(R.id.register_email);
+        passReg = findViewById(R.id.register_password);
 
-        btnLogin = findViewById(R.id.btn_login);
-        btnRegister = findViewById(R.id.btn_register);
+        btnReg = findViewById(R.id.btnreg_register);
+        btnLogin = findViewById(R.id.btnreg_login);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_LONG).show();
-                String loginemail = email.getText().toString().trim();
-                String loginpass = password.getText().toString().trim();
+                String email = emailReg.getText().toString().trim();
+                String pass = passReg.getText().toString().trim();
 
-                if(TextUtils.isEmpty(loginemail)){
-                    email.setError("Email is a required field.");
+                if(TextUtils.isEmpty(email)){
+                    emailReg.setError("Email is a required Field!");
                     return;
                 }
 
-                if(TextUtils.isEmpty(loginpass)){
-                    password.setError("Password is a required field.");
+                if(TextUtils.isEmpty(pass)){
+                    passReg.setError("Password is a required Field!");
                     return;
                 }
                 mDialog.setMessage("Processing...");
                 mDialog.show();
 
-                mAuth.createUserWithEmailAndPassword(loginemail, loginpass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-
-                            mDialog.dismiss();
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Login Failed!", Toast.LENGTH_LONG).show();
-                            mDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "Registration Failed!", Toast.LENGTH_LONG).show();
                         }
+                        mDialog.dismiss();
                     }
                 });
-
             }
         });
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), RegistrationActivity.class));
-
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
     }
-
-
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sachin.job_portal">
+    package="com.android_project.job_portal">
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Job_Portal">
+        android:theme="@style/Theme.Job_Portal" >
+        <activity
+            android:name=".PostJobsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AllJobsActivity"
+            android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />

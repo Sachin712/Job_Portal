@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:180502760675:android:6d3d2762f6a45c094d49d6",
+        "mobilesdk_app_id": "1:180502760675:android:f0b523de7763a0204d49d6",
         "android_client_info": {
-          "package_name": "com.sachin.job_portal"
+          "package_name": "com.android_project.job_portal"
         }
       },
       "oauth_client": [

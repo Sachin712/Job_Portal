@@ -1,4 +1,4 @@
-package com.sachin.job_portal;
+package com.android_project.job_portal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,13 +18,12 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    private EditText emailReg;
-    private EditText passReg;
-
-    private Button btnReg;
+    private EditText email;
+    private EditText password;
     private Button btnLogin;
+    private Button btnRegister;
 
     //Firebase Auth
     private FirebaseAuth mAuth;
@@ -32,43 +31,45 @@ public class RegistrationActivity extends AppCompatActivity {
     //Progress Display
     private ProgressDialog mDialog;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_main);
 
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         mDialog = new ProgressDialog(this);
-        Register();
+        loginFunction();
     }
 
-    private void Register() {
-        emailReg = findViewById(R.id.register_email);
-        passReg = findViewById(R.id.register_password);
+    private void loginFunction() {
+        email = findViewById(R.id.login_email);
+        password = findViewById(R.id.login_password);
 
-        btnReg = findViewById(R.id.btnreg_register);
-        btnLogin = findViewById(R.id.btnreg_login);
+        btnLogin = findViewById(R.id.btn_login);
+        btnRegister = findViewById(R.id.btn_register);
 
-        btnReg.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = emailReg.getText().toString().trim();
-                String pass = passReg.getText().toString().trim();
+                //Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_LONG).show();
+                String loginemail = email.getText().toString().trim();
+                String loginpass = password.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email)){
-                    emailReg.setError("Email is a required Field!");
+                if(TextUtils.isEmpty(loginemail)){
+                    email.setError("Email is a required field.");
                     return;
                 }
 
-                if(TextUtils.isEmpty(pass)){
-                    passReg.setError("Password is a required Field!");
+                if(TextUtils.isEmpty(loginpass)){
+                    password.setError("Password is a required field.");
                     return;
                 }
                 mDialog.setMessage("Processing...");
                 mDialog.show();
 
-                mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mAuth.signInWithEmailAndPassword(loginemail, loginpass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
@@ -76,19 +77,23 @@ public class RegistrationActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Registration Failed!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Login Failed!", Toast.LENGTH_LONG).show();
                         }
                         mDialog.dismiss();
                     }
                 });
+
             }
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), RegistrationActivity.class));
+
             }
         });
     }
+
+
 }
