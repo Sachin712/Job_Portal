@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".PostJobsActivity">
 
-
     <include layout="@layout/toolbar"
         android:id="@+id/toolbar_post_jobs"/>
 
@@ -25,17 +24,15 @@
                 android:layout_height="match_parent"
                 android:id="@+id/recycler_job_post_id">
 
-
             </androidx.recyclerview.widget.RecyclerView>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="Post Job activity" />
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:text="Post Job activity" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"

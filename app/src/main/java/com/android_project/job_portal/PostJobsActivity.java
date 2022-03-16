@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -14,11 +15,14 @@ import android.widget.TextView;
 import com.android_project.job_portal.Model.Data;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class PostJobsActivity extends AppCompatActivity {
 
@@ -28,6 +32,7 @@ public class PostJobsActivity extends AppCompatActivity {
     private DatabaseReference mJobPostDb;
     private FirebaseDatabase database;
     private FirebaseRecyclerAdapter<Data, MyViewHolder> adapter;
+    private LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,38 +42,45 @@ public class PostJobsActivity extends AppCompatActivity {
         fabBtn = findViewById(R.id.fab_add);
         recyclerView = findViewById(R.id.recycler_job_post_id);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setStackFromEnd(true);
-        layoutManager.setReverseLayout(true);
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(layoutManager);
-
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
         String uid = mUser.getUid();
 
         // Write a message to the database
         database = FirebaseDatabase.getInstance();
-
         mJobPostDb = database.getReference().child("Job Post").child(uid);
 
-        fabBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), insert_JobPostActivity.class));
-            }
-        });
+        layoutManager = new LinearLayoutManager(this);
+        layoutManager.setStackFromEnd(true);
+        layoutManager.setReverseLayout(true);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        fetch();
+
+        fabBtn.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), insert_JobPostActivity.class)));
+
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    private void fetch() {
+        Query query = mJobPostDb;
 
 
-        FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>().setQuery(mJobPostDb, Data.class)
-                .build();
+        FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>()
+                .setQuery(query, new SnapshotParser<Data>() {
+                    @NonNull
+                    @Override
+                    public Data parseSnapshot(@NonNull DataSnapshot snapshot) {
+                        return new Data(snapshot.child("title").getValue().toString(),
+                                snapshot.child("description").getValue().toString(),
+                                snapshot.child("skills").getValue().toString(),
+                                snapshot.child("salary").getValue().toString(),
+                                snapshot.child("id").getValue().toString(),
+                                snapshot.child("date").getValue().toString());
+                    }
+
+                }).build();
 
         adapter = new FirebaseRecyclerAdapter<Data, MyViewHolder>(options) {
             @Override
@@ -83,12 +95,15 @@ public class PostJobsActivity extends AppCompatActivity {
             @NonNull
             @Override
             public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return null;
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.job_post_item, parent, false);
+
+                return new MyViewHolder(view);
             }
         };
 
         recyclerView.setAdapter(adapter);
-        //adapter.startListening();
+        adapter.startListening();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
