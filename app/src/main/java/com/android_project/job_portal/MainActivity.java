@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                         mDialog.dismiss();
                     }
                 });
-
             }
         });
 

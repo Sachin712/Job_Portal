@@ -1,6 +1,6 @@
 package com.android_project.job_portal;
 
-import Model.Data;
+import com.android_project.job_portal.Model.Data;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +29,8 @@ public class insert_JobPostActivity extends AppCompatActivity {
     //Firebase
     private FirebaseAuth mAuth;
     private DatabaseReference mJobPost;
+    private FirebaseDatabase database;
+    //private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +42,14 @@ public class insert_JobPostActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Post Job");
 
-        //FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
         String uid = mUser.getUid();
 
-        mJobPost = FirebaseDatabase.getInstance().getReference().child("Job Post").child(uid);
+        // Write a message to the database
+        database = FirebaseDatabase.getInstance();
+
+        mJobPost = database.getReference().child("Job Post").child(uid);
 
         insertJob();
     }

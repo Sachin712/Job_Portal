@@ -29,6 +29,7 @@ public class HomeActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Job Portal App");
 
+
         btnAllJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

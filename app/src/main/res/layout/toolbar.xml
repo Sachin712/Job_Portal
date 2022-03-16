@@ -7,5 +7,4 @@
     app:popupTheme="@android:style/ThemeOverlay.Material.Dark"
     app:titleTextAppearance="@android:style/TextAppearance.Large">
 
-
 </androidx.appcompat.widget.Toolbar>

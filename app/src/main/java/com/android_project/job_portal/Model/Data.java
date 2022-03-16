@@ -1,4 +1,4 @@
-package Model;
+package com.android_project.job_portal.Model;
 
 public class Data {
     String title, description, skills, salary, id, date;
