@@ -4,35 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android_project.job_portal.HomeActivity">
+    tools:context="com.android_project.job_portal.HomeActivity"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar_home"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Home activity"
-            android:textSize="30dp"
-            android:gravity="center"/>
-
         <Button
+            android:id="@+id/btn_alljob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="See All Job Posts"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:id="@+id/btn_alljob"/>
+            android:textAppearance="@android:style/TextAppearance.Large" />
 
         <Button
+            android:id="@+id/btn_postjob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Post a Job"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:id="@+id/btn_postjob"/>
+            android:textAppearance="@android:style/TextAppearance.Large" />
 
     </LinearLayout>
 </LinearLayout>

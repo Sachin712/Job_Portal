@@ -1,6 +1,7 @@
 package com.android_project.job_portal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnAllJob;
     private Button btnPostJob;
 
+    //Toolbar
+    private Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,10 @@ public class HomeActivity extends AppCompatActivity {
 
         btnAllJob = findViewById(R.id.btn_alljob);
         btnPostJob = findViewById(R.id.btn_postjob);
+        toolbar = findViewById(R.id.toolbar_home);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setTitle("Job Portal App");
 
         btnAllJob.setOnClickListener(new View.OnClickListener() {
             @Override

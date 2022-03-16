@@ -4,21 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".PostJobsActivity">
 
-    <LinearLayout
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar_post_jobs"/>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Post jobs"
-            android:textSize="30dp"
-            android:textAppearance="@android:style/TextAppearance.Large"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Post Job activity" />
 
-    </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="25dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="@color/teal_700"
+            android:id="@+id/fab_add"
+            android:src="@drawable/add"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>
