@@ -2,6 +2,7 @@ package com.android_project.job_portal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,11 +34,19 @@ public class PostJobsActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private FirebaseRecyclerAdapter<Data, MyViewHolder> adapter;
     private LinearLayoutManager layoutManager;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_jobs);
+
+        toolbar = findViewById(R.id.toolbar_post_jobs);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Jobs Posts");
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fabBtn = findViewById(R.id.fab_add);
         recyclerView = findViewById(R.id.recycler_job_post_id);

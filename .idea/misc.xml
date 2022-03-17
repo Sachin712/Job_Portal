@@ -6,11 +6,14 @@
         <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_all_job.xml" value="0.21875" />
         <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_home.xml" value="0.1933876811594203" />
         <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_insert_job_post.xml" value="0.21603260869565216" />
+        <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_job_details.xml" value="0.16394927536231885" />
         <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_main.xml" value="0.1933876811594203" />
         <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_post_jobs.xml" value="0.2" />
         <entry key="..\:/config/Job_Portal/app/src/main/res/layout/activity_registration.xml" value="0.1933876811594203" />
+        <entry key="..\:/config/Job_Portal/app/src/main/res/layout/alljobposts.xml" value="0.2480916030534351" />
         <entry key="..\:/config/Job_Portal/app/src/main/res/layout/job_post_item.xml" value="0.176" />
         <entry key="..\:/config/Job_Portal/app/src/main/res/layout/toolbar.xml" value="0.21603260869565216" />
+        <entry key="..\:/config/Job_Portal/app/src/main/res/menu/menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

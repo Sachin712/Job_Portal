@@ -10,20 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Job_Portal">
         <activity
+            android:name=".JobDetailsActivity"
+            android:exported="false"
+            android:parentActivityName=".AllJobsActivity"/>
+        <activity
             android:name=".insert_JobPostActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".PostJobsActivity"/>
         <activity
             android:name=".PostJobsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomeActivity"/>
         <activity
             android:name=".AllJobsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomeActivity"/>
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".RegistrationActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="true">
